@@ -1,13 +1,13 @@
 # SStar Burn Installer
 
-这个目录用于维护公开 installer 仓库 `Entertech/SStarBurnInstall` 的同步内容。
+这个仓库用于公开发布 `SStar Burn` 的 bootstrap 安装入口。
+
+这份 README 在主仓库 `Entertech/SStarBurn` 的 `public-installer/README.md` 中维护，并由 GitHub Actions 自动同步到这里。
 
 公开 installer 仓库只发布两类文件：
 
 - `install.sh`：bootstrap 安装脚本
 - `README.md`：面向最终用户的安装说明
-
-这份 README 会被 GitHub Actions 自动同步到公开仓库，不建议在公开仓库里直接手改。
 
 ## 安装
 
