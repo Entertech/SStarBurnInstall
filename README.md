@@ -57,6 +57,7 @@ ssburn self remove
 
 - 如果初始安装跟踪的是分支，例如 `main`，升级会继续从同一个 repo 拉取这个分支的最新代码
 - 如果初始安装用的是固定 tag，managed checkout 没有可持续跟踪的 upstream；这时建议重新执行安装脚本并指定新的 `--ref`
+- 如果 `git pull --ff-only` 没有拉到新的 commit，升级会直接跳过重装，不会重复执行 `pip install`
 
 ## 说明
 
