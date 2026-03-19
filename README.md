@@ -6,7 +6,8 @@
 
 公开 installer 仓库只发布两类文件：
 
-- `install.sh`：bootstrap 安装脚本
+- `install.sh`：可直接 `curl | bash` 的 bootstrap 安装脚本
+- `install-core.sh`：真实安装器，由 bootstrap 下载并执行
 - `README.md`：面向最终用户的安装说明
 
 ## 安装
@@ -14,42 +15,28 @@
 默认安装会跟踪内部主仓库 `git@github.com:Entertech/SStarBurn.git` 的 `main` 分支：
 
 ```bash
-tmp="$(mktemp)" \
-  && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" \
-  && chmod +x "$tmp" \
-  && "$tmp" \
-  && rm -f "$tmp"
+curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh | bash
 ```
 
 如果你不是从内部私有仓库安装，而是从公开镜像、客户仓库或 fork 安装，可以显式覆盖源码地址：
 
 ```bash
-tmp="$(mktemp)" \
-  && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" \
-  && chmod +x "$tmp" \
-  && "$tmp" --repo-url https://github.com/ORG/SStarBurn.git --ref main \
-  && rm -f "$tmp"
+curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh | bash -s -- --repo-url https://github.com/ORG/SStarBurn.git --ref main
 ```
 
 如果你要安装一个固定版本，而不是持续跟踪某个分支，可以把 `--ref` 指到 tag：
 
 ```bash
-tmp="$(mktemp)" \
-  && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" \
-  && chmod +x "$tmp" \
-  && "$tmp" --repo-url https://github.com/ORG/SStarBurn.git --ref v0.1.0 \
-  && rm -f "$tmp"
+curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh | bash -s -- --repo-url https://github.com/ORG/SStarBurn.git --ref v0.1.0
 ```
 
 常用安装参数：
 
 ```bash
-tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && chmod +x "$tmp" && "$tmp" --sudo-group entertech && rm -f "$tmp"
-tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && chmod +x "$tmp" && "$tmp" --no-sudoers && rm -f "$tmp"
-tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && chmod +x "$tmp" && "$tmp" --prefix /opt/custom/sstarburn --bin-dir /usr/local/bin && rm -f "$tmp"
+curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh | bash -s -- --sudo-group entertech
+curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh | bash -s -- --no-sudoers
+curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh | bash -s -- --prefix /opt/custom/sstarburn --bin-dir /usr/local/bin
 ```
-
-如果刚更新过公开 installer 仓库，`raw.githubusercontent.com` 的分支 URL 可能会有几分钟 CDN 缓存；加执行位的写法对新旧脚本都兼容。
 
 ## 使用
 
