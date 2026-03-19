@@ -16,7 +16,8 @@
 ```bash
 tmp="$(mktemp)" \
   && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" \
-  && bash "$tmp" \
+  && chmod +x "$tmp" \
+  && "$tmp" \
   && rm -f "$tmp"
 ```
 
@@ -25,7 +26,8 @@ tmp="$(mktemp)" \
 ```bash
 tmp="$(mktemp)" \
   && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" \
-  && bash "$tmp" --repo-url https://github.com/ORG/SStarBurn.git --ref main \
+  && chmod +x "$tmp" \
+  && "$tmp" --repo-url https://github.com/ORG/SStarBurn.git --ref main \
   && rm -f "$tmp"
 ```
 
@@ -34,17 +36,20 @@ tmp="$(mktemp)" \
 ```bash
 tmp="$(mktemp)" \
   && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" \
-  && bash "$tmp" --repo-url https://github.com/ORG/SStarBurn.git --ref v0.1.0 \
+  && chmod +x "$tmp" \
+  && "$tmp" --repo-url https://github.com/ORG/SStarBurn.git --ref v0.1.0 \
   && rm -f "$tmp"
 ```
 
 常用安装参数：
 
 ```bash
-tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && bash "$tmp" --sudo-group entertech && rm -f "$tmp"
-tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && bash "$tmp" --no-sudoers && rm -f "$tmp"
-tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && bash "$tmp" --prefix /opt/custom/sstarburn --bin-dir /usr/local/bin && rm -f "$tmp"
+tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && chmod +x "$tmp" && "$tmp" --sudo-group entertech && rm -f "$tmp"
+tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && chmod +x "$tmp" && "$tmp" --no-sudoers && rm -f "$tmp"
+tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarBurnInstall/main/install.sh -o "$tmp" && chmod +x "$tmp" && "$tmp" --prefix /opt/custom/sstarburn --bin-dir /usr/local/bin && rm -f "$tmp"
 ```
+
+如果刚更新过公开 installer 仓库，`raw.githubusercontent.com` 的分支 URL 可能会有几分钟 CDN 缓存；加执行位的写法对新旧脚本都兼容。
 
 ## 使用
 
