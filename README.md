@@ -1,9 +1,13 @@
 # SStar Burn Installer
 
-这个仓库只公开发布 `install.sh`，用于安装内部工具 **SStar Burn**。
+这个目录用于维护公开 installer 仓库 `Entertech/SStarBurnInstall` 的同步内容。
 
-- `install.sh` 会自动从主仓库拉取代码并完成系统安装
-- 这个仓库的 `install.sh` 由主仓库 CI 自动同步，不建议直接手改
+公开 installer 仓库只发布两类文件：
+
+- `install.sh`：bootstrap 安装脚本
+- `README.md`：面向最终用户的安装说明
+
+这份 README 会被 GitHub Actions 自动同步到公开仓库，不建议在公开仓库里直接手改。
 
 ## 安装
 
@@ -24,7 +28,7 @@ tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/Entertech/SStarB
 
 ## 使用
 
-安装后用户只需要用：
+安装后直接执行：
 
 ```bash
 ssburn -p /dev/tty.usbserial-xxxx -f /path/to/USB_UPGRADE_UFU.bin
@@ -39,5 +43,5 @@ ssburn self remove
 
 ## 说明
 
-- 主仓库：<https://github.com/Entertech/SStarBurn>
+- 主仓库：[Entertech/SStarBurn](https://github.com/Entertech/SStarBurn)
 - 如果主仓库仍然是私有的，执行安装脚本的用户仍然需要有主仓库访问权限
